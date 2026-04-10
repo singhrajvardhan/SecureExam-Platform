@@ -1,0 +1,145 @@
+-- Database: exam_system
+
+-- Students table (enhanced)
+CREATE TABLE IF NOT EXISTS `students` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `application_id` VARCHAR(50) UNIQUE NOT NULL,
+    `roll_number` VARCHAR(50) UNIQUE NOT NULL,
+    `full_name` VARCHAR(100) NOT NULL,
+    `email` VARCHAR(100) UNIQUE NOT NULL,
+    `phone` VARCHAR(20),
+    `password` VARCHAR(255) NOT NULL,
+    `date_of_birth` DATE,
+    `profile_photo` VARCHAR(255),
+    `register_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Teachers table
+CREATE TABLE IF NOT EXISTS `teachers` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `username` VARCHAR(50) UNIQUE NOT NULL,
+    `email` VARCHAR(100) UNIQUE NOT NULL,
+    `password` VARCHAR(255) NOT NULL,
+    `full_name` VARCHAR(100) NOT NULL,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Questions table
+CREATE TABLE IF NOT EXISTS `questions` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `question_text` TEXT NOT NULL,
+    `option_a` VARCHAR(255) NOT NULL,
+    `option_b` VARCHAR(255) NOT NULL,
+    `option_c` VARCHAR(255) NOT NULL,
+    `option_d` VARCHAR(255) NOT NULL,
+    `correct_answer` CHAR(1) NOT NULL,
+    `marks` INT DEFAULT 4,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Exam sessions table (tracks each exam attempt)
+CREATE TABLE IF NOT EXISTS `exam_sessions` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `student_id` VARCHAR(50) NOT NULL,
+    `student_name` VARCHAR(100),
+    `roll_number` VARCHAR(50),
+    `start_time` DATETIME,
+    `end_time` DATETIME,
+    `status` ENUM('active', 'completed', 'terminated') DEFAULT 'active',
+    `total_tab_switches` INT DEFAULT 0,
+    `suspicious_activities` INT DEFAULT 0,
+    `face_detection_fails` INT DEFAULT 0,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (`student_id`) REFERENCES `students`(`application_id`)
+);
+
+-- Exam answers table
+CREATE TABLE IF NOT EXISTS `exam_answers` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `session_id` INT NOT NULL,
+    `student_id` VARCHAR(50) NOT NULL,
+    `question_id` INT NOT NULL,
+    `selected_answer` CHAR(1),
+    `is_correct` BOOLEAN DEFAULT FALSE,
+    `answered_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (`session_id`) REFERENCES `exam_sessions`(`id`),
+    FOREIGN KEY (`question_id`) REFERENCES `questions`(`id`)
+);
+
+-- Tab switch logs
+CREATE TABLE IF NOT EXISTS `tab_switch_logs` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `session_id` INT NOT NULL,
+    `student_id` VARCHAR(50) NOT NULL,
+    `switch_time` DATETIME,
+    `switch_count` INT DEFAULT 1,
+    `recorded_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (`session_id`) REFERENCES `exam_sessions`(`id`)
+);
+
+-- Camera logs (face detection)
+CREATE TABLE IF NOT EXISTS `camera_logs` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `session_id` INT NOT NULL,
+    `student_id` VARCHAR(50) NOT NULL,
+    `image_path` VARCHAR(255),
+    `face_detected` BOOLEAN,
+    `multiple_faces` BOOLEAN DEFAULT FALSE,
+    `no_face` BOOLEAN DEFAULT FALSE,
+    `detection_time` DATETIME,
+    `recorded_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (`session_id`) REFERENCES `exam_sessions`(`id`)
+);
+
+-- Exam results table
+CREATE TABLE IF NOT EXISTS `exam_results` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `session_id` INT NOT NULL,
+    `student_id` VARCHAR(50) NOT NULL,
+    `roll_number` VARCHAR(50),
+    `student_name` VARCHAR(100),
+    `total_questions` INT,
+    `correct_answers` INT,
+    `wrong_answers` INT,
+    `total_marks` INT,
+    `obtained_marks` INT,
+    `score_percentage` DECIMAL(5,2),
+    `total_tab_switches` INT DEFAULT 0,
+    `suspicious_activities` INT DEFAULT 0,
+    `completed_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (`session_id`) REFERENCES `exam_sessions`(`id`)
+);
+
+-- Insert sample questions (50 questions)
+INSERT INTO `questions` (`question_text`, `option_a`, `option_b`, `option_c`, `option_d`, `correct_answer`, `marks`) VALUES
+('What does PHP stand for?', 'Personal Home Page', 'Preprocessor Hypertext Page', 'PHP: Hypertext Preprocessor', 'Public Host Page', 'C', 4),
+('What is the correct way to create a function in PHP?', 'function myFunction()', 'create myFunction()', 'new_function myFunction()', 'def myFunction()', 'A', 4),
+('How do you write "Hello World" in PHP?', 'echo "Hello World";', '"Hello World";', 'document.write("Hello World");', 'print_f("Hello World");', 'A', 4),
+('What does SQL stand for?', 'Structured Question Language', 'Strong Query Language', 'Structured Query Language', 'Simple Query Language', 'C', 4),
+('Which operator is used for concatenation in PHP?', '+', '&', '.', '=>', 'C', 4),
+('What is the correct way to start a session in PHP?', 'session_start()', 'start_session()', 'session_begin()', 'begin_session()', 'A', 4),
+('How do you get the length of a string in PHP?', 'len($str)', 'length($str)', 'strlen($str)', 'str_length($str)', 'C', 4),
+('What does CSS stand for?', 'Computer Style Sheets', 'Creative Style Sheets', 'Cascading Style Sheets', 'Colorful Style Sheets', 'C', 4),
+('Which HTML tag is used for an unordered list?', '<ul>', '<ol>', '<list>', '<li>', 'A', 4),
+('What is the correct JavaScript syntax to change content?', 'document.getElementById("demo").innerHTML = "Hello!";', 'document.getElement("demo").innerHTML = "Hello!";', '#demo.innerHTML = "Hello!";', 'document.getElementsByTagName("demo").innerHTML = "Hello!";', 'A', 4);
+
+-- Add more questions to reach 50 (simplified for brevity - you can add 40 more similarly)
+INSERT INTO `questions` (`question_text`, `option_a`, `option_b`, `option_c`, `option_d`, `correct_answer`, `marks`) VALUES
+('Which of the following is not a JavaScript framework?', 'React', 'Angular', 'Django', 'Vue', 'C', 4),
+('What does API stand for?', 'Application Programming Interface', 'Application Program Interface', 'Application Programming Internet', 'Application Protocol Interface', 'A', 4),
+('Which HTTP method is used to retrieve data?', 'POST', 'GET', 'PUT', 'DELETE', 'B', 4),
+('What is the default port for HTTPS?', '80', '443', '8080', '3306', 'B', 4),
+('Which of the following is a NoSQL database?', 'MySQL', 'PostgreSQL', 'MongoDB', 'SQLite', 'C', 4),
+('What does JSON stand for?', 'JavaScript Object Notation', 'Java Script Object Notation', 'JavaScript Oriented Notation', 'Java Object Notation', 'A', 4),
+('Which symbol is used for comments in Python?', '//', '#', '/*', '<!--', 'B', 4),
+('What does HTML stand for?', 'Hyper Text Markup Language', 'High Text Markup Language', 'Hyper Tabular Markup Language', 'Hyper Text Modern Language', 'A', 4),
+('Which attribute is used to specify an image source?', 'href', 'src', 'link', 'source', 'B', 4),
+('What does AJAX stand for?', 'Asynchronous JavaScript and XML', 'Advanced JavaScript and XML', 'Asynchronous Java and XML', 'Adaptive JavaScript and XML', 'A', 4);
+
+-- Insert default teacher account
+INSERT INTO `teachers` (`username`, `email`, `password`, `full_name`) VALUES
+('admin', 'admin@examsystem.com', MD5('admin123'), 'System Administrator');
+
+-- Insert sample student
+INSERT INTO `students` (`application_id`, `roll_number`, `full_name`, `email`, `phone`, `password`, `date_of_birth`) VALUES
+('STU2024001', '2024CS001', 'John Doe', 'john@example.com', '1234567890', MD5('student123'), '2000-01-15');
