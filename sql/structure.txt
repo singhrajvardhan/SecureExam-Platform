@@ -1,0 +1,50 @@
+project_root/
+│
+├── index.php
+│
+├── api/
+│   ├── save_answer.php
+│   ├── start_exam.php
+│   ├── submit_exam.php
+│   └── track_activity.php
+│
+├── assets/
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   └── main.js (optional - for client-side functionality)
+│   └── images/
+│       └── (store images if needed)
+│
+├── config/
+│   ├── session.php
+│   └── database.php
+│
+├── uploads/
+│   └── (store uploaded files - make sure to add .htaccess for security)
+│
+├── students/
+│   ├── student_login.php
+│   ├── student_dashboard.php
+│   ├── exam.php
+│   ├── exam_result.php
+│   ├── save_exam_answers.php
+│   ├── submit_exam.php
+│   ├── log_tab_switch.php
+│   ├── log_camera_event.php
+│   ├── log_suspicious_activity.php
+│   └── logout.php
+│
+└── teacher/
+    ├── login.php
+    ├── dashboard.php
+    ├── index.php
+    ├── manage_students.php
+    ├── manage_questions.php
+    ├── view_results.php
+    ├── security_logs.php
+    ├── camera_logs.php
+    ├── edit_student.php
+    ├── student_results.php
+    ├── view_result_details.php
+    └── get_question.php
