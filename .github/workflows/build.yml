@@ -16,6 +16,13 @@ jobs:
         git clone https://github.com/${{ github.repository }}.git .
         git checkout ${{ github.sha }}
     
+    - name: Setup Node.js
+      run: |
+        curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+        sudo apt-get install -y nodejs
+        node --version
+        npm --version
+    
     - name: Cache npm dependencies
       run: |
         mkdir -p ~/.npm
@@ -26,11 +33,19 @@ jobs:
     
     - name: Install dependencies
       run: |
-        npm install || npm install --no-package-lock
+        if [ -f "package.json" ]; then
+          npm install || npm install --no-package-lock
+        else
+          echo "No package.json found"
+        fi
     
     - name: Run tests
       run: |
-        npm test || echo "No tests configured"
+        if [ -f "package.json" ]; then
+          npm test || echo "No tests configured"
+        else
+          echo "No tests to run"
+        fi
     
     - name: Save cache for next run
       run: |
