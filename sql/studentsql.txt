@@ -1,0 +1,51 @@
+-- =============================================
+-- Database: exam_system
+-- Description: Complete database schema for ExamGuardian-Proctor
+-- Version: 1.0.0
+-- =============================================
+
+-- Create database if not exists
+CREATE DATABASE IF NOT EXISTS `exam_system` 
+CHARACTER SET utf8mb4 
+COLLATE utf8mb4_unicode_ci;
+
+USE `exam_system`;
+
+-- =============================================
+-- 1. STUDENTS TABLE (Main Student Information)
+-- =============================================
+
+DROP TABLE IF EXISTS `students`;
+CREATE TABLE `students` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY COMMENT 'Auto increment primary key',
+    `application_id` VARCHAR(50) UNIQUE NOT NULL COMMENT 'Unique application ID for student',
+    `roll_number` VARCHAR(50) UNIQUE NOT NULL COMMENT 'Student roll number',
+    `full_name` VARCHAR(100) NOT NULL COMMENT 'Student full name',
+    `email` VARCHAR(100) UNIQUE NOT NULL COMMENT 'Student email address',
+    `phone` VARCHAR(20) DEFAULT NULL COMMENT 'Student phone number',
+    `password` VARCHAR(255) NOT NULL COMMENT 'Student password (MD5 encrypted)',
+    `date_of_birth` DATE DEFAULT NULL COMMENT 'Student date of birth',
+    `gender` ENUM('Male', 'Female', 'Other') DEFAULT NULL COMMENT 'Student gender',
+    `address` TEXT DEFAULT NULL COMMENT 'Student address',
+    `city` VARCHAR(50) DEFAULT NULL COMMENT 'City',
+    `state` VARCHAR(50) DEFAULT NULL COMMENT 'State',
+    `pincode` VARCHAR(10) DEFAULT NULL COMMENT 'Postal code',
+    `profile_photo` VARCHAR(255) DEFAULT NULL COMMENT 'Profile photo path',
+    `father_name` VARCHAR(100) DEFAULT NULL COMMENT 'Father/Guardian name',
+    `mother_name` VARCHAR(100) DEFAULT NULL COMMENT 'Mother name',
+    `course_name` VARCHAR(100) DEFAULT NULL COMMENT 'Course enrolled',
+    `semester` INT DEFAULT NULL COMMENT 'Current semester',
+    `batch_year` YEAR DEFAULT NULL COMMENT 'Batch year',
+    `is_active` BOOLEAN DEFAULT TRUE COMMENT 'Account status',
+    `last_login` DATETIME DEFAULT NULL COMMENT 'Last login timestamp',
+    `register_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT 'Registration date',
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last update timestamp',
+    
+    INDEX idx_application (application_id),
+    INDEX idx_roll (roll_number),
+    INDEX idx_email (email),
+    INDEX idx_name (full_name),
+    INDEX idx_course (course_name),
+    INDEX idx_batch (batch_year),
+    INDEX idx_active (is_active)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Students master table';
