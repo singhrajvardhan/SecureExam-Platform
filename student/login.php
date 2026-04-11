@@ -1,9 +1,7 @@
 <?php
 session_start();
 include '../config/database.php';
-
 $error = '';
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $application_id = $_POST['application_id'];
     $roll_number = $_POST['roll_number'];
