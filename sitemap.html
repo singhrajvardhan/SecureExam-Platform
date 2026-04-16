@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Sitemap | ExamGuardian Proctor – Complete Navigation Hub</title>
+    <meta name="description" content="Complete sitemap of ExamGuardian Proctor – Online examination system with cheating detection. Explore student portal, teacher panel, admin area, and public resources.">
+    <link rel="icon" type="image/png" href="raj.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: radial-gradient(circle at 10% 20%, #0f172a, #020617);
+            padding: 40px 24px;
+            min-height: 100vh;
+        }
+
+        /* animated background particles */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .bg-glow::before {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(102,126,234,0.25), transparent 70%);
+            top: -150px;
+            right: -100px;
+            border-radius: 50%;
+        }
+        .bg-glow::after {
+            content: "";
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(118,75,162,0.2), transparent 70%);
+            bottom: -200px;
+            left: -150px;
+            border-radius: 50%;
+        }
+
+        /* main container glassmorphic */
+        .sitemap-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(14px);
+            border-radius: 56px;
+            border: 1px solid rgba(102, 126, 234, 0.35);
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255,255,255,0.05) inset;
+            padding: 48px 44px;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* header section */
+        .sitemap-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.4);
+        }
+        .title-section h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFFFFF, #b2c4ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .title-section p {
+            color: #a5b4fc;
+            margin-top: 12px;
+            font-size: 1rem;
+        }
+        .stats-badge {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            padding: 12px 24px;
+            border-radius: 60px;
+            border: 1px solid rgba(102,126,234,0.5);
+        }
+        .stats-badge span {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #c084fc;
+        }
+        .stats-badge small {
+            color: #cbd5e1;
+            font-weight: 500;
+        }
+
+        /* section styles */
+        .sitemap-section {
+            margin: 48px 0 32px;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #e2e8ff;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border-left: 5px solid #818cf8;
+            padding-left: 20px;
+        }
+        .section-title i {
+            font-size: 1.9rem;
+            color: #a78bfa;
+        }
+
+        /* modern grid cards */
+        .sitemap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 28px;
+        }
+        .sitemap-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 28px;
+            padding: 22px 24px;
+            transition: all 0.25s ease;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        .sitemap-card:hover {
+            transform: translateY(-6px);
+            background: rgba(51, 65, 85, 0.7);
+            border-color: #818cf8;
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.4);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+            border-bottom: 1px dashed rgba(129, 140, 248, 0.4);
+            padding-bottom: 12px;
+        }
+        .card-header i {
+            font-size: 2rem;
+            color: #a78bfa;
+        }
+        .card-header h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #f1f5f9;
+        }
+        .link-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .link-list li a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #cbd5e6;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            padding: 6px 8px;
+            border-radius: 14px;
+        }
+        .link-list li a i {
+            width: 24px;
+            font-size: 0.9rem;
+            color: #94a3f0;
+        }
+        .link-list li a:hover {
+            background: rgba(129, 140, 248, 0.2);
+            color: white;
+            transform: translateX(5px);
+        }
+        .link-list li a:hover i {
+            color: #c4b5fd;
+        }
+
+        /* admin special row */
+        .admin-row {
+            margin-top: 20px;
+        }
+        .footer-note {
+            margin-top: 48px;
+            text-align: center;
+            padding-top: 28px;
+            border-top: 1px solid rgba(148, 163, 184, 0.3);
+            color: #9ca3cf;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(95deg, #4f46e5, #7c3aed);
+            padding: 10px 26px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            color: white;
+            transition: 0.2s;
+            border: none;
+        }
+        .back-home:hover {
+            transform: scale(1.02);
+            background: linear-gradient(95deg, #6366f1, #8b5cf6);
+            box-shadow: 0 8px 18px rgba(79, 70, 229, 0.4);
+        }
+        @media (max-width: 780px) {
+            .sitemap-container { padding: 28px 20px; }
+            .title-section h1 { font-size: 1.9rem; }
+            .sitemap-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 1.4rem; }
+        }
+        @media (max-width: 520px) {
+            body { padding: 20px 16px; }
+            .stats-badge span { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="bg-glow"></div>
+<div class="sitemap-container">
+    <div class="sitemap-header">
+        <div class="title-section">
+            <h1><i class="fas fa-sitemap"></i> Navigation Atlas</h1>
+            <p><i class="fas fa-shield-alt"></i> ExamGuardian Proctor — complete blueprint of integrity-driven examination system</p>
+        </div>
+        <div class="stats-badge">
+            <i class="fas fa-code-branch"></i> <span>48+</span> <small>dynamic routes</small><br>
+            <i class="fas fa-globe"></i> <span>5</span> <small>core portals</small>
+        </div>
+    </div>
+
+    <!-- PUBLIC AREA -->
+    <div class="sitemap-section">
+        <div class="section-title">
+            <i class="fas fa-globe-americas"></i>
+            <h2>Public Gateway</h2>
+        </div>
+        <div class="sitemap-grid">
+            <div class="sitemap-card">
+                <div class="card-header">
+                    <i class="fas fa-door-open"></i>
+                    <h3>Authentication Hub</h3>
+                </div>
+                <ul class="link-list">
+                    <li><a href="/"><i class="fas fa-home"></i> Home – Proctor Dashboard Preview</a></li>
+                    <li><a href="/student_login.php"><i class="fas fa-graduation-cap"></i> Student Login Portal</a></li>
+                    <li><a href="/teacher/login.php"><i class="fas fa-chalkboard-user"></i> Teacher Login</a></li>
+                    <li><a href="/admin/login.php"><i class="fas fa-user-shield"></i> Admin Secure Access</a></li>
+                    <li><a href="/register.php"><i class="fas fa-user-plus"></i> Create Account (Student/Faculty)</a></li>
+                    <li><a href="/forgot_password.php"><i class="fas fa-key"></i> Recover Credentials</a></li>
+                </ul>
+            </div>
+            <div class="sitemap-card">
+                <div class="card-header">
+                    <i class="fas fa-info-circle"></i>
+                    <h3>Legal & Support</h3>
+                </div>
+                <ul class="link-list">
+                    <li><a href="/about.php"><i class="fas fa-building"></i> About ExamGuardian</a></li>
+                    <li><a href="/contact.php"><i class="fas fa-headset"></i> 24/7 Support & Inquiries</a></li>
+                    <li><a href="/faq.php"><i class="fas fa-question-circle"></i> Frequently Asked Questions</a></li>
+                    <li><a href="/help.php"><i class="fas fa-life-ring"></i> Help Center & Tutorials</a></li>
+                    <li><a href="/privacy-policy.php"><i class="fas fa-shield-alt"></i> Privacy & Data Protection</a></li>
+                    <li><a href="/terms-of-service.php"><i class="fas fa-file-signature"></i> Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- STUDENT PORTAL (extended) -->
+    <div class="sitemap-section">
+        <div class="section-title">
+            <i class="fas fa-user-graduate"></i>
+            <h2>Student Command Center</h2>
+        </div>
+        <div class="sitemap-grid">
+            <div class="sitemap-card">
+                <div class="card-header">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <h3>Dashboard & Profile</h3>
+                </div>
+                <ul class="link-list">
+                    <li><a href="/student/dashboard.php"><i class="fas fa-chart-line"></i> Main Performance Dashboard</a></li>
+                    <li><a href="/student/profile.php"><i class="fas fa-id-card"></i> My Academic Profile</a></li>
+                    <li><a href="/student/edit_profile.php"><i class="fas fa-user-edit"></i> Edit Personal Details</a></li>
+                    <li><a href="/student/change_password.php"><i class="fas fa-lock"></i> Update Security Key</a></li>
+                </ul>
+            </div>
+            <div class="sitemap-card">
+                <div class="card-header">
+                    <i class="fas fa-pen-fancy"></i>
+                    <h3>Examination Zone</h3>
+                </div>
+                <ul class="link-list">
+                    <li><a href="/student/exam/start.php"><i class="fas fa-play-circle"></i> Launch Proctored Exam</a></li>
+                    <li><a href="/student/exam/take_exam.php"><i class="fas fa-laptop-code"></i> Live Exam Interface</a></li>
+                    <li><a href="/student/exam/result.php"><i class="fas fa-poll"></i> Instant Scorecard</a></li>
+                    <li><a href="/student/exam/previous_results.php"><i class="fas fa-history"></i> Exam History Archive</a></li>
+                </ul>
+            </div>
+            <div class="sitemap-card">
+                <div class="card-header">
+                    <i class="fas fa-chart-simple"></i>
+                    <h3>Performance Analytics</h3>
+                </div>
+                <ul class="link-list">
+                    <li><a href="/student/performance/analytics.php"><i class="fas fa-chart-pie"></i> Subject-wise Insights</a></li>
+                    <li><a href="/student/performance/comparison.php"><i class="fas fa-ranking-star"></i> Class & Rank Comparison</a></li>
+                    <li><a href="/student/performance/certificates.php"><i class="fas fa-award"></i> Digital Certificates</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- TEACHER PANEL (Rich monitoring) -->
+    <div class="sitemap-section">
+        <div class="section-title">
+            <i class="fas fa-chalkboard"></i>
+            <h2>Educator & Proctor Suite</h2>
+        </div>
+        <div class="sitemap-grid">
+            <div class="sitemap-card">
+                <div class="card-header">
+                    <i class="fas fa-users"></i>
+                    <h3>Student Management</h3>
+                </div>
+                <ul class="link-list">
+                    <li><a href="/teacher/students/list.php"><i class="fas fa-list-ul"></i> Enrolled Roster</a></li>
+                    <li><a href="/teacher/students/add.php"><i class="fas fa-user-plus"></i> Add Candidate</a></li>
+                    <li><a href="/teacher/students/import.php"><i class="fas fa-file-excel"></i> Bulk CSV Import</a></li>
+                </ul>
+            </div>
+            <div class="sitemap-card">
+                <div class="card-header">
+                    <i class="fas fa-database"></i>
+                    <h3>Question Bank</h3>
+                </div>
+                <ul class="link-list">
+                    <li><a href="/teacher/questions/bank.php"><i class="fas fa-layer-group"></i> Master Question Repository</a></li>
+                    <li><a href="/teacher/questions/add.php"><i class="fas fa-plus-circle"></i> Create Question (MCQ/Descriptive)</a></li>
+                    <li><a href="/teacher/questions/bulk_import.php"><i class="fas fa-upload"></i> Bulk Question Upload</a></li>
+                </ul>
+            </div>
+            <div class="sitemap-card">
+                <div class="card-header">
+                    <i class="fas fa-eye"></i>
+                    <h3>Live Proctoring</h3>
+                </div>
+                <ul class="link-list">
+                    <li><a href="/teacher/monitoring/live.php"><i class="fas fa-video"></i> Real-time Vigilance Feed</a></li>
+                    <li><a href="/teacher/monitoring/tab_switches.php"><i class="fas fa-window-restore"></i> Tab Switch Violations</a></li>
+                    <li><a href="/teacher/monitoring/camera_logs.php"><i class="fas fa-camera"></i> Face Detection Audit</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN AREA (full control) -->
+    <div class="sitemap-section">
+        <div class="section-title">
+            <i class="fas fa-crown"></i>
+            <h2>Administration & System Core</h2>
+        </div>
+        <div class="sitemap-grid">
+            <div class="sitemap-card">
+                <div class="card-header">
+                    <i class="fas fa-sliders-h"></i>
+                    <h3>System Orchestration</h3>
+                </div>
+                <ul class="link-list">
+                    <li><a href="/admin/dashboard.php"><i class="fas fa-chart-bar"></i> Admin Central Hub</a></li>
+                    <li><a href="/admin/manage_users.php"><i class="fas fa-user-cog"></i> Manage Students / Teachers</a></li>
+                    <li><a href="/admin/exam_schedule.php"><i class="fas fa-calendar-alt"></i> Exam Scheduling Engine</a></li>
+                    <li><a href="/admin/reports.php"><i class="fas fa-flag-checkered"></i> Global Reports & Analytics</a></li>
+                </ul>
+            </div>
+            <div class="sitemap-card">
+                <div class="card-header">
+                    <i class="fas fa-shield-virus"></i>
+                    <h3>Security & Integrity</h3>
+                </div>
+                <ul class="link-list">
+                    <li><a href="/admin/audit_logs.php"><i class="fas fa-history"></i> Platform Audit Trail</a></li>
+                    <li><a href="/admin/anti_cheat_settings.php"><i class="fas fa-brain"></i> Cheating Detection Tuning</a></li>
+                    <li><a href="/admin/backup.php"><i class="fas fa-database"></i> Data Backup & Restore</a></li>
+                </ul>
+            </div>
+            <div class="sitemap-card">
+                <div class="card-header">
+                    <i class="fas fa-cog"></i>
+                    <h3>Configuration</h3>
+                </div>
+                <ul class="link-list">
+                    <li><a href="/admin/settings.php"><i class="fas fa-globe"></i> Global Platform Settings</a></li>
+                    <li><a href="/admin/email_templates.php"><i class="fas fa-envelope-open-text"></i> Notification Templates</a></li>
+                    <li><a href="/admin/integrations.php"><i class="fas fa-plug"></i> LTI / API Integrations</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional: Quick actions & footer -->
+    <div class="footer-note">
+        <div>
+            <i class="fas fa-map-marked-alt"></i> Complete site architecture — all routes protected by role-based access & proctoring modules.
+        </div>
+        <a href="/" class="back-home"><i class="fas fa-arrow-left"></i> Return to Exam Portal</a>
+    </div>
+    <div class="footer-note" style="border-top: none; margin-top: 10px; justify-content: center;">
+        <p style="font-size: 0.8rem;">© 2026 ExamGuardian Proctor — AI-powered proctoring | Version 2.0 (Quantum Secure) | Last updated: March 2026</p>
+    </div>
+</div>
+
+<!-- add small interactive particles effect and dynamic tooltips (pure style) -->
+<script>
+    // Simple interactive glow on cards (optional)
+    const cards = document.querySelectorAll('.sitemap-card');
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--x', `${x}px`);
+            card.style.setProperty('--y', `${y}px`);
+        });
+    });
+    // Add dynamic copyright year
+    const yearSpan = document.querySelector('.footer-note p');
+    if (yearSpan) {
+        const currentYear = new Date().getFullYear();
+        yearSpan.innerHTML = yearSpan.innerHTML.replace('2026', currentYear);
+    }
+    // console info
+    console.log("🗺️ ExamGuardian Proctor Sitemap — full navigation ready");
+</script>
+</body>
+</html>
