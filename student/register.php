@@ -1,7 +1,7 @@
 <?php
 session_start();
 include '../config/database.php';
-require_once '../raj2026/smtp_email.php';  // Function is loaded from here
+require_once '..//semail.php';  // Function is loaded from here
 
 $error = '';
 $success = '';
